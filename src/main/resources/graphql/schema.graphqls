@@ -1,0 +1,44 @@
+type Customer {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String!
+    address: String!
+    city: String!
+    state: String!
+    zipCode: String!
+}
+
+type Order {
+    id: ID!
+    customer: Customer!
+    orderValue: Float!
+}
+
+
+input CustomerInput {
+    firstName: String!
+    lastName: String!
+    email: String!
+    phoneNumber: String!
+    address: String!
+    city: String!
+    state: String!
+    zipCode: String!
+}
+
+
+type Query{
+
+    customers: [Customer]!
+    orders: [Order]!
+    customerByID(id : ID): Customer
+    customerByEmail(email: String) : Customer
+    customerByState(state: String): [Customer]!
+    orderByCustomerEmail(email: String!): [Order]!
+}
+
+type Mutation{
+    addCustomer(input: CustomerInput): Customer
+}
